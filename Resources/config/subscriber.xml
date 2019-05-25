@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="opportus_extended_framework.data_generator_subscriber" class="Opportus\ExtendedFrameworkBundle\EventSubscriber\DataGeneratorSubscriber" public="false">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="opportus_extended_framework.data_generator" />
+        </service>
+
+        <service id="opportus_extended_framework.response_generator_subscriber" class="Opportus\ExtendedFrameworkBundle\EventSubscriber\ResponseGeneratorSubscriber" public="false">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="opportus_extended_framework.response_generator" />
+        </service>
+
+        <service id="opportus_extended_framework.flash_generator_subscriber" class="Opportus\ExtendedFrameworkBundle\EventSubscriber\FlashGeneratorSubscriber" public="false">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="opportus_extended_framework.flash_generator" />
+        </service>
+
+        <service id="opportus_extended_framework.annotation_reader_subscriber" class="Opportus\ExtendedFrameworkBundle\EventSubscriber\AnnotationReaderSubscriber" public="false">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="annotation_reader" />
+        </service>
+
+    </services>
+
+</container>
