@@ -36,6 +36,16 @@
             <argument type="service" id="opportus_object_mapper.object_mapper" />
         </service>
 
+        <service id="opportus_extended_framework.data_generator.patch_entity_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\PatchEntityStrategy" public="false">
+            <tag name="data_generator_strategy" priority="0" />
+            <argument type="service" id="serializer" />
+            <argument type="service" id="validator" />
+            <argument type="service" id="security.authorization_checker" />
+            <argument type="service" id="opportus_extended_framework.entity_gateway" />
+            <argument type="service" id="opportus_extended_framework.query_builder" />
+            <argument type="service" id="opportus_object_mapper.object_mapper" />
+        </service>
+
         <service id="opportus_extended_framework.response_generator" class="Opportus\ExtendedFrameworkBundle\Generator\ResponseGenerator" public="false">
             <argument type="collection" /><!-- All services with tag "response_generator_strategy" are stored here by pass. -->
         </service>
