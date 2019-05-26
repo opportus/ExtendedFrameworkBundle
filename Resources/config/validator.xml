@@ -6,7 +6,13 @@
 
     <services>
 
-        <service id="opportus_extended_framework.unique_validator" class="Opportus\ExtendedFrameworkBundle\Validator\Constraints\UniqueValidator" public="false">
+        <service id="opportus_extended_framework.exclusive_entity_validator" class="Opportus\ExtendedFrameworkBundle\Validator\Constraints\ExclusiveEntityValidator" public="false">
+            <tag name="validator.constraint_validator" />
+            <argument type="service" id="opportus_extended_framework.entity_gateway" />
+            <argument type="service" id="opportus_extended_framework.query_builder" />
+        </service>
+
+        <service id="opportus_extended_framework.inclusive_entity_validator" class="Opportus\ExtendedFrameworkBundle\Validator\Constraints\InclusiveEntityValidator" public="false">
             <tag name="validator.constraint_validator" />
             <argument type="service" id="opportus_extended_framework.entity_gateway" />
             <argument type="service" id="opportus_extended_framework.query_builder" />

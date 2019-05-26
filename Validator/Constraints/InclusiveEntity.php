@@ -5,7 +5,7 @@ namespace Opportus\ExtendedFrameworkBundle\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * The unique constraint.
+ * The inclusive entity constraint.
  *
  * @package Opportus\ExtendedFrameworkBundle\Validator\Constraints
  * @author  Clément Cazaud <opportus@gmail.com>
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraint;
  * @Annotation
  * @Target({"PROPERTY"})
  */
-class Unique extends Constraint
+class InclusiveEntity extends Constraint
 {
     /**
      * @var string $entityFqcn
@@ -29,7 +29,7 @@ class Unique extends Constraint
     /**
      * @var string $message
      */
-    public $message = '%key% "%value%" is not unique.';
+    public $message = '%key% "%value%" is not inclusive.';
 
     /**
      * {@inheritdoc}

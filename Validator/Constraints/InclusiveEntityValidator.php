@@ -9,13 +9,13 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
- * The unique constraint validator.
+ * The inclusive entity constraint validator.
  *
  * @package Opportus\ExtendedFrameworkBundle\Validator\Constraints
  * @author  Clément Cazaud <opportus@gmail.com>
  * @license https://github.com/opportus/snowtricks/blob/master/LICENSE.md MIT
  */
-class UniqueValidator extends ConstraintValidator
+class InclusiveEntityValidator extends ConstraintValidator
 {
     /**
      * @var Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface $entityGateway
@@ -28,7 +28,7 @@ class UniqueValidator extends ConstraintValidator
     private $queryBuilder;
 
     /**
-     * Constructs the unique constraint validator.
+     * Constructs the inclusive entity constraint validator.
      *
      * @param Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface $entityGateway
      * @param Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface $queryBuilder
@@ -44,8 +44,8 @@ class UniqueValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if (!$constraint instanceof Unique) {
-            throw new UnexpectedTypeException($constraint, Unique::class);
+        if (!$constraint instanceof InclusiveEntity) {
+            throw new UnexpectedTypeException($constraint, InclusiveEntity::class);
         }
 
         $query = $this->queryBuilder
@@ -57,7 +57,7 @@ class UniqueValidator extends ConstraintValidator
 
         $queryResult = $this->entityGateway->query($query);
 
-        if ($queryResult->isEmpty()) {
+        if (!$queryResult->isEmpty()) {
             return;
         }
 
