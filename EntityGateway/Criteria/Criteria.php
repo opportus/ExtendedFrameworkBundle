@@ -43,7 +43,7 @@ final class Criteria implements CriteriaInterface
                 function ($lexeme) {
                     return \trim($lexeme);
                 },
-                \preg_split('/('.LogicalOperatorToken::LEXEME_PATTERN.'|'.ComparisonOperatorToken::LEXEME_PATTERN.'|'.ParenthesisToken::LEXEME_PATTERN.')/', $expression, -1, \PREG_SPLIT_DELIM_CAPTURE)
+                \preg_split('/('.LogicalOperatorToken::LEXEME_PATTERN.'|'.ComparisonOperatorToken::LEXEME_PATTERN.'|'.ParenthesisToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEME_PATTERN.')/', $expression, -1, \PREG_SPLIT_DELIM_CAPTURE)
             ),
             function ($lexeme) {
                 if ('' !== $lexeme) {
@@ -158,7 +158,7 @@ final class Criteria implements CriteriaInterface
                 }
 
                 if (isset($lexemeSequence[$position+1])) {
-                    if (!\preg_match('/^\)|'.LogicalOperatorToken::LEXEME_PATTERN.'|'.RightComparisonOperandToken.'$/', $lexemeSequence[$position+1])) {
+                    if (!\preg_match('/^\)|'.LogicalOperatorToken::LEXEME_PATTERN.'|'.RightComparisonOperandToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position+1])) {
                         throw new EntityGatewayException(\sprintf(
                             'Invalid "expression" argument: expecting a quote to be followed by either a close parenthesis or a logical operator or a right comparison operand in "%s", got "%s" as token number "%d".',
                             $expression,
@@ -192,7 +192,7 @@ final class Criteria implements CriteriaInterface
 
                 if (!\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
                     throw new EntityGatewayException(\sprintf(
-                        'Invalid "expression" argument: expecting a logical operator to be preceded by either a left comparison operand or a quote in "%s", got "%s" as token number "%d".',
+                        'Invalid "expression" argument: expecting a logical operator to be preceded by either a right comparison operand or a quote in "%s", got "%s" as token number "%d".',
                         $expression,
                         $lexemeSequence[$position-1],
                         $position-1
@@ -338,7 +338,10 @@ final class Criteria implements CriteriaInterface
     {
         $string = '';
         foreach ($this->tokenSequence as $position => $token) {
-            if (0 !== $position) {
+            if (0 !== $position &&
+                !($token instanceof QuoteToken && $this->tokenSequence[$position-1] instanceof ComparsionOperatorToken) &&
+                !($token instanceof RightComparisonOperandToken && $this->tokenSequence[$position-1] instanceof QuoteToken)
+            ) {
                 $string .= ' ';
             }
 

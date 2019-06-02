@@ -13,7 +13,7 @@ use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException;
  */
 final class LogicalOperatorToken implements TokenInterface
 {
-    const LEXEME_PATTERN = '(AND|OR)(?i)';
+    const LEXEME_PATTERN = 'AND|OR';
 
     /**
      * @var string $value
