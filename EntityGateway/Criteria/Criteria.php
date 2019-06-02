@@ -190,7 +190,7 @@ final class Criteria implements CriteriaInterface
                     ));
                 }
 
-                if (!\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEM_PATTERN.'$/', $lexemeSequence[$position-1])) {
+                if (!\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
                     throw new EntityGatewayException(\sprintf(
                         'Invalid "expression" argument: expecting a logical operator to be preceded by either a left comparison operand or a quote in "%s", got "%s" as token number "%d".',
                         $expression,
