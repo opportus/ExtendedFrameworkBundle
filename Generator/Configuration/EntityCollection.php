@@ -10,12 +10,17 @@ use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
  * @package Opportus\ExtendedFrameworkBundle\Generator\Configuration
  * @author  Clément Cazaud <opportus@gmail.com>
  * @license https://github.com/opportus/ExtendedFrameworkBundle/blob/master/LICENSE.md MIT
- * 
+ *
  * @Annotation
  * @Target("METHOD")
  */
 final class EntityCollection extends AbstractDataConfiguration
 {
+    /**
+     * @var array $entityCriteria
+     */
+    private $entityCriteria;
+
     /**
      * @var null|string $queryConstraintFqcn
      */
@@ -29,6 +34,7 @@ final class EntityCollection extends AbstractDataConfiguration
      */
     public function __construct(array $values = [])
     {
+        $this->entityCriteria = $values['entityCriteria'] ?? [];
         $this->queryConstraintFqcn = $values['queryConstraintFqcn'] ?? null;
         $entityFqcn = $values['entityFqcn'] ?? null;
         $options = $values['options'] ?? [];
@@ -40,10 +46,17 @@ final class EntityCollection extends AbstractDataConfiguration
             'strategyFqcn' => $strategyFqcn,
         ]);
 
+        if (!\is_array($this->entityCriteria)) {
+            throw new GeneratorException(\sprintf(
+                '"entityCriteria" is expected to be an "array", got "%s".',
+                \gettype($this->entityCriteria)
+            ));
+        }
+
         if (null !== $this->queryConstraintFqcn) {
             if (!\is_string($this->queryConstraintFqcn)) {
                 throw new GeneratorException(\sprintf(
-                    '"queryConstraintFqcn" is expected to be a "string", got a "%s".',
+                    '"queryConstraintFqcn" is expected to be a "string", got "%s".',
                     \gettype($this->queryConstraintFqcn)
                 ));
             }
@@ -58,8 +71,18 @@ final class EntityCollection extends AbstractDataConfiguration
     }
 
     /**
+     * Gets the entity criteria.
+     *
+     * @return array
+     */
+    public function getEntityCriteria(): array
+    {
+        return $this->entityCriteria;
+    }
+
+    /**
      * Gets the query constraint FQCN.
-     * 
+     *
      * @return null|string
      */
     public function getQueryConstraintFqcn(): ?string

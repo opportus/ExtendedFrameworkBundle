@@ -72,24 +72,32 @@ final class EntityCollectionStrategy implements DataStrategyInterface
             }
         }
 
-        $entityFqcn = $dataConfiguration->getEntityFqcn();
-        $criteria = $request->query->get('criteria', []);
-        $order = $request->query->get('order', []);
-        $limit = $request->query->getInt('limit', 10);
-        $offset = $request->query->getInt('offset', 0);
+        $criteria = [];
+
+        foreach ($dataConfiguration->getEntityCriteria() as $entityPropertyName => $entityPropertyValueKey) {
+            $criteria[$entityPropertyName] = $request->attributes->get($entityPropertyValueKey);
+        }
+
+        $criteria = \array_merge($request->query->get('criteria', []), $criteria);
 
         $serializedCriteria = '';
-        foreach ($criteria as $entityPropertyName => $entityPropertyValue) {
-            $entityPropertyValue = \is_numeric($entityPropertyValue) ? $entityPropertyValue : \sprintf('"%s"', $entityPropertyValue);
 
+        foreach ($criteria as $entityPropertyName => $entityPropertyValue) {
             if ($serializedCriteria) {
                 $serializedCriteria .= ' AND ';
             }
 
+            $entityPropertyValue = \is_numeric($entityPropertyValue) ? $entityPropertyValue : \sprintf('"%s"', $entityPropertyValue);
             $serializedCriteria .= \sprintf('%s = %s', $entityPropertyName, $entityPropertyValue);
         }
 
-        $queryResult = $this->entityGateway->query($this->queryBuilder
+        $entityFqcn = $dataConfiguration->getEntityFqcn();
+        $order = $request->query->get('order', []);
+        $limit = $request->query->getInt('limit', 10);
+        $offset = $request->query->getInt('offset', 0);
+
+        $queryResult = $this->entityGateway->query(
+            $this->queryBuilder
             ->prepareQuery()
             ->setEntityFqcn($entityFqcn)
             ->setCriteria($serializedCriteria)

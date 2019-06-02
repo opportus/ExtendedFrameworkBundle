@@ -56,23 +56,30 @@ final class EntityStrategy implements DataStrategyInterface
             ));
         }
 
-        $entityFqcn = $dataConfiguration->getEntityFqcn();
-        $entityIdKey = $dataConfiguration->getEntityId() ?? 'id';
-        $entityIdValue = $request->attributes->get($entityIdKey);
+        $criteria = [];
 
-        if (null === $entityIdValue) {
-            throw new GeneratorException(\sprintf(
-                'The request does not contain any attribute "%s" in order to identify the requested entity.',
-                $entityIdKey
-            ));
+        foreach ($dataConfiguration->getEntityCriteria() as $entityPropertyName => $entityPropertyValueKey) {
+            $criteria[$entityPropertyName] = $request->attributes->get($entityPropertyValueKey);
         }
 
-        $entityIdValue = \is_numeric($entityIdValue) ? $entityIdValue : \sprintf('"%s"', $entityIdValue);
+        $serializedCriteria = '';
 
-        $queryResult = $this->entityGateway->query($this->queryBuilder
+        foreach ($criteria as $entityPropertyName => $entityPropertyValue) {
+            if ($serializedCriteria) {
+                $serializedCriteria .= ' AND ';
+            }
+
+            $entityPropertyValue = \is_numeric($entityPropertyValue) ? $entityPropertyValue : \sprintf('"%s"', $entityPropertyValue);
+            $serializedCriteria .= \sprintf('%s = %s', $entityPropertyName, $entityPropertyValue);
+        }
+
+        $entityFqcn = $dataConfiguration->getEntityFqcn();
+
+        $queryResult = $this->entityGateway->query(
+            $this->queryBuilder
             ->prepareQuery()
             ->setEntityFqcn($entityFqcn)
-            ->setCriteria(\sprintf('%s = %s', $entityIdKey, $entityIdValue))
+            ->setCriteria($serializedCriteria)
             ->build()
         );
 

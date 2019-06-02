@@ -17,9 +17,9 @@ use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 final class Entity extends AbstractDataConfiguration
 {
     /**
-     * @var string $entityId
+     * @var array $entityCriteria
      */
-    private $entityId;
+    private $entityCriteria;
 
     /**
      * Constructs the entity configuration.
@@ -29,7 +29,7 @@ final class Entity extends AbstractDataConfiguration
      */
     public function __construct(array $values = [])
     {
-        $this->entityId = $values['entityId'] ?? 'id';
+        $this->entityCriteria = $values['entityCriteria'] ?? ['id' => 'id'];
         $entityFqcn = $values['entityFqcn'] ?? null;
         $options = $values['options'] ?? [];
         $strategyFqcn = $values['strategyFqcn'] ?? null;
@@ -40,21 +40,21 @@ final class Entity extends AbstractDataConfiguration
             'strategyFqcn' => $strategyFqcn,
         ]);
 
-        if (!\is_string($this->entityId)) {
+        if (!\is_array($this->entityCriteria) || empty($this->entityCriteria)) {
             throw new GeneratorException(\sprintf(
-                '"entityId" is expected to be a "string", got a "%s".',
-                \gettype($this->entityId)
+                '"entityCriteria" is expected to be a non empty "array", got "%s".',
+                \gettype($this->entityCriteria) === 'array' ? 'empty array' : \gettype($this->entityCriteria)
             ));
         }
     }
 
     /**
-     * Gets the entity ID.
-     * 
-     * @return string
+     * Gets the entity criteria.
+     *
+     * @return array
      */
-    public function getEntityId(): string
+    public function getEntityCriteria(): array
     {
-        return $this->entityId;
+        return $this->entityCriteria;
     }
 }
