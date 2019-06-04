@@ -30,7 +30,7 @@ final class ViewGenerator implements ViewGeneratorInterface
 
         throw new GeneratorException(\sprintf(
             'No registered value generator strategy supports the value configuration "%s" within the current context.',
-            \get_class($valueConfiguration)
+            \get_class($viewConfiguration)
         ));
     }
 }
