@@ -26,17 +26,17 @@ final class GeneratorStrategiesPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $generatorStrategyTags = [
-            'opportus_extended_framework.data_generator'     => 'data_generator_strategy',
-            'opportus_extended_framework.response_generator' => 'response_generator_strategy',
-            'opportus_extended_framework.view_generator'     => 'view_generator_strategy',
-            'opportus_extended_framework.flash_generator'    => 'flash_generator_strategy',
-            'opportus_extended_framework.value_generator'    => 'value_generator_strategy',
+            'opportus_extended_framework.data_generator'     => 'opportus_extended_framework.data_generator_strategy',
+            'opportus_extended_framework.response_generator' => 'opportus_extended_framework.response_generator_strategy',
+            'opportus_extended_framework.view_generator'     => 'opportus_extended_framework.view_generator_strategy',
+            'opportus_extended_framework.flash_generator'    => 'opportus_extended_framework.flash_generator_strategy',
+            'opportus_extended_framework.value_generator'    => 'opportus_extended_framework.value_generator_strategy',
         ];
 
         foreach ($generatorStrategyTags as $generatorId => $generatorStrategyTag) {
             $generatorStrategyPriorities = [];
             foreach ($container->findTaggedServiceIds($generatorStrategyTag) as $generatorStrategyId => $generatorStrategyTags) {
-                $priority = $generatorStrategyTags[0]['priority'];
+                $priority = (int) isset($generatorStrategyTags[0]['priority']) ? $generatorStrategyTags[0]['priority'] : 0;
                 $generatorStrategyPriorities[$generatorStrategyId] = $priority;
             }
 

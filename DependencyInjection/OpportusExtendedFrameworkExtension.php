@@ -11,6 +11,11 @@ use Opportus\ExtendedFrameworkBundle\Generator\ResponseGeneratorInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\ViewGeneratorInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\FlashGeneratorInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\Strategy\DataStrategyInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\Strategy\ResponseStrategyInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\Strategy\ViewStrategyInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\Strategy\FlashStrategyInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\Strategy\ValueSrategyInterface;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -45,6 +50,8 @@ final class OpportusExtendedFrameworkExtension extends Extension
         $this->registerSubscriberServices($configs, $container, $loader);
         $this->registerSerializerServices($configs, $container, $loader);
         $this->registerValidatorServices($configs, $container, $loader);
+
+        $this->autoTag($container);
     }
 
     /**
@@ -201,5 +208,19 @@ final class OpportusExtendedFrameworkExtension extends Extension
     private function registerValidatorServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
     {
         $loader->load('validator.xml');
+    }
+
+    /**
+     * Auto tags.
+     *
+     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
+     */
+    public function autoTag(ContainerBuilder $container)
+    {
+        $container->registerForAutoconfiguration(DataStrategyInterface::class)->addTag('opportus_extended_framework.data_generator_strategy');
+        $container->registerForAutoconfiguration(ResponseStrategyInterface::class)->addTag('opportus_extended_framework.response_generator_strategy');
+        $container->registerForAutoconfiguration(ViewStrategyInterface::class)->addTag('opportus_extended_framework.view_generator_strategy');
+        $container->registerForAutoconfiguration(FlashStrategyInterface::class)->addTag('opportus_extended_framework.flash_generator_strategy');
+        $container->registerForAutoconfiguration(ValueStrategyInterface::class)->addTag('opportus_extended_framework.value_generator_strategy');
     }
 }

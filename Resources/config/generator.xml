@@ -7,27 +7,27 @@
     <services>
 
         <service id="opportus_extended_framework.data_generator" class="Opportus\ExtendedFrameworkBundle\Generator\DataGenerator" public="false">
-            <argument type="collection" /><!-- All services with tag "data_generator_strategy" are stored here by pass. -->
+            <argument type="collection" /><!-- All services with tag "opportus_extended_framework.data_generator_strategy" are stored here by pass. -->
         </service>
         <service id="opportus_extended_framework.data_generator.entity_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\EntityStrategy" public="false">
-            <tag name="data_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.data_generator_strategy" priority="0" />
             <argument type="service" id="opportus_extended_framework.entity_gateway" />
             <argument type="service" id="opportus_extended_framework.query_builder" />
         </service>
         <service id="opportus_extended_framework.data_generator.entity_collection_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\EntityCollectionStrategy" public="false">
-            <tag name="data_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.data_generator_strategy" priority="0" />
             <argument type="service" id="opportus_extended_framework.entity_gateway" />
             <argument type="service" id="opportus_extended_framework.query_builder" />
             <argument type="service" id="validator" />
         </service>
         <service id="opportus_extended_framework.data_generator.post_entity_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\PostEntityStrategy" public="false">
-            <tag name="data_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.data_generator_strategy" priority="0" />
             <argument type="service" id="serializer" />
             <argument type="service" id="validator" />
             <argument type="service" id="opportus_object_mapper.object_mapper" />
         </service>
         <service id="opportus_extended_framework.data_generator.put_entity_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\PutEntityStrategy" public="false">
-            <tag name="data_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.data_generator_strategy" priority="0" />
             <argument type="service" id="serializer" />
             <argument type="service" id="validator" />
             <argument type="service" id="security.authorization_checker" />
@@ -37,7 +37,7 @@
         </service>
 
         <service id="opportus_extended_framework.data_generator.patch_entity_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\PatchEntityStrategy" public="false">
-            <tag name="data_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.data_generator_strategy" priority="0" />
             <argument type="service" id="serializer" />
             <argument type="service" id="validator" />
             <argument type="service" id="security.authorization_checker" />
@@ -47,51 +47,51 @@
         </service>
 
         <service id="opportus_extended_framework.response_generator" class="Opportus\ExtendedFrameworkBundle\Generator\ResponseGenerator" public="false">
-            <argument type="collection" /><!-- All services with tag "response_generator_strategy" are stored here by pass. -->
+            <argument type="collection" /><!-- All services with tag "opportus_extended_framework.response_generator_strategy" are stored here by pass. -->
         </service>
         <service id="opportus_extended_framework.response_generator.response_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\ResponseStrategy" public="false">
-            <tag name="response_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.response_generator_strategy" priority="0" />
             <argument type="service" id="opportus_extended_framework.view_generator" />
             <argument type="service" id="opportus_extended_framework.value_generator" />
         </service>
 
         <service id="opportus_extended_framework.view_generator" class="Opportus\ExtendedFrameworkBundle\Generator\ViewGenerator" public="false">
-            <argument type="collection" /><!-- All services with tag "view_generator_strategy" are stored here by pass. -->
+            <argument type="collection" /><!-- All services with tag "opportus_extended_framework.view_generator_strategy" are stored here by pass. -->
         </service>
         <service id="opportus_extended_framework.view_generator.template_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\TemplateStrategy" public="false">
-            <tag name="view_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.view_generator_strategy" priority="0" />
             <argument type="service" id="opportus_extended_framework.template_engine" />
         </service>
         <service id="opportus_extended_framework.view_generator.serialized_data_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\SerializedDataStrategy" public="false">
-            <tag name="view_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.view_generator_strategy" priority="0" />
             <argument type="service" id="serializer" />
             <argument type="service" id="opportus_extended_framework.data_fetcher" />
             <argument type="service" id="opportus_object_mapper.object_mapper" />
         </service>
 
         <service id="opportus_extended_framework.flash_generator" class="Opportus\ExtendedFrameworkBundle\Generator\FlashGenerator" public="false">
-            <argument type="collection" /><!-- All services with tag "flash_generator_strategy" are stored here by pass. -->
+            <argument type="collection" /><!-- All services with tag "opportus_extended_framework.flash_generator_strategy" are stored here by pass. -->
         </service>
         <service id="opportus_extended_framework.flash_generator.flash_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\FlashStrategy" public="false">
-            <tag name="flash_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.flash_generator_strategy" priority="0" />
             <argument type="service" id="session" />
             <argument type="service" id="opportus_extended_framework.value_generator" />
         </service>
 
         <service id="opportus_extended_framework.value_generator" class="Opportus\ExtendedFrameworkBundle\Generator\ValueGenerator" public="false">
-            <argument type="collection" /><!-- All services with tag "value_generator_strategy" are stored here by pass. -->
+            <argument type="collection" /><!-- All services with tag "opportus_extended_framework.value_generator_strategy" are stored here by pass. -->
         </service>
         <service id="opportus_extended_framework.value_generator.value_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\ValueStrategy" public="false">
-            <tag name="value_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.value_generator_strategy" priority="0" />
             <argument type="service" id="opportus_extended_framework.data_fetcher" />
         </service>
         <service id="opportus_extended_framework.value_generator.route_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\RouteStrategy" public="false">
-            <tag name="value_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.value_generator_strategy" priority="0" />
             <argument type="service" id="router" />
             <argument type="service" id="opportus_extended_framework.data_fetcher" />
         </service>
         <service id="opportus_extended_framework.value_generator.trans_strategy" class="Opportus\ExtendedFrameworkBundle\Generator\Strategy\TransStrategy" public="false">
-            <tag name="value_generator_strategy" priority="0" />
+            <tag name="opportus_extended_framework.value_generator_strategy" priority="0" />
             <argument type="service" id="translator" />
             <argument type="service" id="opportus_extended_framework.data_fetcher" />
         </service>
