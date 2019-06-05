@@ -72,7 +72,7 @@ final class SerializedDataStrategy implements ViewStrategyInterface
             $data = $this->dataFetcher->fetch($accessor, $controllerResult->getData());
         }
 
-        $data = $data ?? [];
+        $data = $data ?? new \StdClass();
         $format = $request->getFormat($viewConfiguration->getFormat());
         $context = $viewConfiguration->getSerializationContext();
         $serializationFqcn = $viewConfiguration->getSerializationFqcn();
