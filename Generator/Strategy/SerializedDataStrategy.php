@@ -9,7 +9,6 @@ use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface;
 use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryResult;
-use Opportus\ExtendedFrameworkBundle\Serializer\SerializableCollection;
 use Opportus\ObjectMapper\ObjectMapperInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -68,6 +67,7 @@ final class SerializedDataStrategy implements ViewStrategyInterface
 
         if (null === $accessor) {
             $data = $controllerResult->getData();
+
         } else {
             $data = $this->dataFetcher->fetch($accessor, $controllerResult->getData());
         }
@@ -80,19 +80,19 @@ final class SerializedDataStrategy implements ViewStrategyInterface
         if (\is_object($data)) {
             if ($data instanceof QueryResult) {
                 if (null === $serializationFqcn) {
-                    $data = new SerializableCollection($data->toArray());
+                    $data = $data->toArray();
+
                 } else {
                     $serializableItems = [];
                     foreach ($data as $entity) {
                         $serializableItems[] = $this->objectMapper->map($entity, $serializationFqcn);
                     }
 
-                    $data = new SerializableCollection($serializableItems);
+                    $data = $serializableItems;
                 }
-            } else {
-                if (null !== $serializationFqcn) {
-                    $data = $this->objectMapper->map($data, $serializationFqcn);
-                }
+
+            } elseif (null !== $serializationFqcn) {
+                $data = $this->objectMapper->map($data, $serializationFqcn);
             }
         }
 

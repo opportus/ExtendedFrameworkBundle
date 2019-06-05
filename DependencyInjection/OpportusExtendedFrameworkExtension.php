@@ -48,7 +48,6 @@ final class OpportusExtendedFrameworkExtension extends Extension
         $this->registerEntityGatewayServices($configs, $container, $loader);
         $this->registerGeneratorServices($configs, $container, $loader);
         $this->registerSubscriberServices($configs, $container, $loader);
-        $this->registerSerializerServices($configs, $container, $loader);
         $this->registerValidatorServices($configs, $container, $loader);
 
         $this->autoTag($container);
@@ -182,19 +181,6 @@ final class OpportusExtendedFrameworkExtension extends Extension
     private function registerSubscriberServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
     {
         $loader->load('subscriber.xml');
-    }
-
-    /**
-     * Registers the serializer services.
-     *
-     * @param array $configs
-     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param Symfony\Component\DependencyInjection\Loader\XmlFileLoader $loader
-     * @throws Opportus\ExtendedFrameworkBundle\DependencyInjection\DependencyInjectionException
-     */
-    private function registerSerializerServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
-    {
-        $loader->load('serializer.xml');
     }
 
     /**
