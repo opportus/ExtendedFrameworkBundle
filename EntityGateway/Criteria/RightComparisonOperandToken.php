@@ -13,7 +13,7 @@ use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException;
  */
 final class RightComparisonOperandToken implements TokenInterface
 {
-    const LEXEME_PATTERN = '".*"|(-?(?:\d+|\d*\.\d+))|(TRUE|FALSE)(?i)';
+    const LEXEME_PATTERN = '".*"|(-?(?:\d+|\d*\.\d+))|(TRUE|FALSE|NULL)(?i)';
 
     /**
      * @var string $value

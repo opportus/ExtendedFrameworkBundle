@@ -43,7 +43,7 @@ final class Criteria implements CriteriaInterface
                 function ($lexeme) {
                     return \trim($lexeme);
                 },
-                \preg_split('/('.LogicalOperatorToken::LEXEME_PATTERN.'|'.ComparisonOperatorToken::LEXEME_PATTERN.'|'.ParenthesisToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEME_PATTERN.')/', $expression, -1, \PREG_SPLIT_DELIM_CAPTURE)
+                \preg_split('/('.LogicalOperatorToken::LEXEME_PATTERN.'|'.ComparisonOperatorToken::LEXEME_PATTERN.'|'.ParenthesisToken::LEXEME_PATTERN.')/', $expression, -1, \PREG_SPLIT_DELIM_CAPTURE)
             ),
             function ($lexeme) {
                 if ('' !== $lexeme) {
@@ -99,15 +99,15 @@ final class Criteria implements CriteriaInterface
                 } elseif (')' === $lexeme) {
                     if (!isset($lexemeSequence[$position-1])) {
                         throw new EntityGatewayException(\sprintf(
-                            'Invalid "expression" argument: expecting a close parenthesis to be preceded by either another close parenthesis or a right comparison operand or a quote in "%s", got "" as token number "%d".',
+                            'Invalid "expression" argument: expecting a close parenthesis to be preceded by either another close parenthesis or a right comparison operand in "%s", got "" as token number "%d".',
                             $expression,
                             $position-1
                         ));
                     }
 
-                    if (!\preg_match('/^\)|'.RightComparisonOperandToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
+                    if (!\preg_match('/^\)|'.RightComparisonOperandToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
                         throw new EntityGatewayException(\sprintf(
-                            'Invalid "expression" argument: expecting a close parenthesis to be preceded by either another close parenthesis or a right comparison operand or a quote in "%s", got "%s" as token number "%d".',
+                            'Invalid "expression" argument: expecting a close parenthesis to be preceded by either another close parenthesis or a right comparison operand in "%s", got "%s" as token number "%d".',
                             $expression,
                             $lexemeSequence[$position-1],
                             $position-1
@@ -127,72 +127,18 @@ final class Criteria implements CriteriaInterface
                 }
 
                 $tokenSequence[$position] = new ParenthesisToken($lexeme);
-
-            } elseif (\preg_match('/^'.QuoteToken::LEXEME_PATTERN.'$/', $lexeme)) {
-                if (!isset($lexemeSequence[$position-1])) {
-                    throw new EntityGatewayException(\sprintf(
-                        'Invalid "expression" argument: expecting a quote to be preceded by either a comparison operator or a right comparison operand in "%s", got "" as token number "%d".',
-                        $expression,
-                        $position-1
-                    ));
-                }
-
-                if (!\preg_match('/^'.ComparisonOperatorToken::LEXEME_PATTERN.'|'.RightComparisonOperandToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
-                    throw new EntityGatewayException(\sprintf(
-                        'Invalid "expression" argument: expecting a quote to be preceded by either a comparison operator or a right comparison operand in "%s", got "%s" as token number "%d".',
-                        $expression,
-                        $lexemeSequence[$position-1],
-                        $position-1
-                    ));
-                }
-
-                if (\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
-                    if (!\preg_match('/^'.QuoteToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-2])) {
-                        throw new EntityGatewayException(\sprintf(
-                            'Invalid "expression" argument: expecting a close quote to have a corresponding open quote in "%s", got "%s" as token number "%d".',
-                            $expression,
-                            $lexemeSequence[$position-2],
-                            $position-2
-                        ));
-                    }
-                }
-
-                if (isset($lexemeSequence[$position+1])) {
-                    if (!\preg_match('/^\)|'.LogicalOperatorToken::LEXEME_PATTERN.'|'.RightComparisonOperandToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position+1])) {
-                        throw new EntityGatewayException(\sprintf(
-                            'Invalid "expression" argument: expecting a quote to be followed by either a close parenthesis or a logical operator or a right comparison operand in "%s", got "%s" as token number "%d".',
-                            $expression,
-                            $lexemeSequence[$position+1],
-                            $position+1
-                        ));
-                    }
-
-                    if (\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position+1])) {
-                        if (!\preg_match('/^'.QuoteToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position+2])) {
-                            throw new EntityGatewayException(\sprintf(
-                                'Invalid "expression" argument: expecting an open quote to have a corresponding close quote in "%s", got "%s" as token number "%d".',
-                                $expression,
-                                $lexemeSequence[$position+2],
-                                $position+2
-                            ));
-                        }
-                    }
-                }
-
-                $tokenSequence[$position] = new QuoteToken($lexeme);
-
             } elseif (\preg_match('/^'.LogicalOperatorToken::LEXEME_PATTERN.'$/', $lexeme)) {
                 if (!isset($lexemeSequence[$position-1])) {
                     throw new EntityGatewayException(\sprintf(
-                        'Invalid "expression" argument: expecting a logical operator to be preceded by either a right comparison operand or a quote in "%s", got "" as token number "%d".',
+                        'Invalid "expression" argument: expecting a logical operator to be preceded by either a right comparison operand in "%s", got "" as token number "%d".',
                         $expression,
                         $position-1
                     ));
                 }
 
-                if (!\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
+                if (!\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
                     throw new EntityGatewayException(\sprintf(
-                        'Invalid "expression" argument: expecting a logical operator to be preceded by either a right comparison operand or a quote in "%s", got "%s" as token number "%d".',
+                        'Invalid "expression" argument: expecting a logical operator to be preceded by either a right comparison operand in "%s", got "%s" as token number "%d".',
                         $expression,
                         $lexemeSequence[$position-1],
                         $position-1
@@ -217,7 +163,6 @@ final class Criteria implements CriteriaInterface
                 }
 
                 $tokenSequence[$position] = new LogicalOperatorToken($lexeme);
-
             } elseif (\preg_match('/^'.ComparisonOperatorToken::LEXEME_PATTERN.'$/', $lexeme)) {
                 if (!isset($lexemeSequence[$position-1])) {
                     throw new EntityGatewayException(\sprintf(
@@ -238,15 +183,15 @@ final class Criteria implements CriteriaInterface
 
                 if (!isset($lexemeSequence[$position+1])) {
                     throw new EntityGatewayException(\sprintf(
-                        'Invalid "expression" argument: expecting a comparison operator to be followed by either a right comparison operand or a quote in "%s", got "" as token number "%d".',
+                        'Invalid "expression" argument: expecting a comparison operator to be followed by either a right comparison operand in "%s", got "" as token number "%d".',
                         $expression,
                         $position+1
                     ));
                 }
 
-                if (!\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position+1])) {
+                if (!\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position+1])) {
                     throw new EntityGatewayException(\sprintf(
-                        'Invalid "expression" argument: expecting a comparison operator to be followed by either a right comparison operand or a quote in "%s", got "%s" as token number "%d".',
+                        'Invalid "expression" argument: expecting a comparison operator to be followed by either a right comparison operand in "%s", got "%s" as token number "%d".',
                         $expression,
                         $lexemeSequence[$position+1],
                         $position+1
@@ -254,7 +199,6 @@ final class Criteria implements CriteriaInterface
                 }
 
                 $tokenSequence[$position] = new ComparisonOperatorToken($lexeme);
-
             } elseif (\preg_match('/^'.LeftComparisonOperandToken::LEXEME_PATTERN.'$/', $lexeme)) {
                 if (isset($lexemeSequence[$position-1])) {
                     if (!\preg_match('/^'.ParenthesisToken::LEXEME_PATTERN.'|'.LogicalOperatorToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
@@ -285,19 +229,18 @@ final class Criteria implements CriteriaInterface
                 }
 
                 $tokenSequence[$position] = new LeftComparisonOperandToken($lexeme);
-
             } elseif (\preg_match('/^'.RightComparisonOperandToken::LEXEME_PATTERN.'$/', $lexeme)) {
                 if (!isset($lexemeSequence[$position-1])) {
                     throw new EntityGatewayException(\sprintf(
-                        'Invalid "expression" argument: expecting a right comparison operand to be preceded by either a comparison operator or a quote in "%s", got "" as token number "%d".',
+                        'Invalid "expression" argument: expecting a right comparison operand to be preceded by either a comparison operator in "%s", got "" as token number "%d".',
                         $expression,
                         $position-1
                     ));
                 }
 
-                if (!\preg_match('/^'.ComparisonOperatorToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
+                if (!\preg_match('/^'.ComparisonOperatorToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position-1])) {
                     throw new EntityGatewayException(\sprintf(
-                        'Invalid "expression" argument: expecting a right comparison operand to be preceded by either a comparison operator or a quote in "%s", got "%s" as token number "%d".',
+                        'Invalid "expression" argument: expecting a right comparison operand to be preceded by either a comparison operator in "%s", got "%s" as token number "%d".',
                         $expression,
                         $lexemeSequence[$position-1],
                         $position-1
@@ -305,9 +248,9 @@ final class Criteria implements CriteriaInterface
                 }
 
                 if (isset($lexemeSequence[$position+1])) {
-                    if (!\preg_match('/^'.ParenthesisToken::LEXEME_PATTERN.'|'.LogicalOperatorToken::LEXEME_PATTERN.'|'.QuoteToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position+1])) {
+                    if (!\preg_match('/^'.ParenthesisToken::LEXEME_PATTERN.'|'.LogicalOperatorToken::LEXEME_PATTERN.'$/', $lexemeSequence[$position+1])) {
                         throw new EntityGatewayException(\sprintf(
-                            'Invalid "expression" argument: expecting a right comparison operand to be followed by either a close parenthesis or a logical operator or a quote in "%s", got "%s" as token number "%d".',
+                            'Invalid "expression" argument: expecting a right comparison operand to be followed by either a close parenthesis or a logical operator in "%s", got "%s" as token number "%d".',
                             $expression,
                             $lexemeSequence[$position+1],
                             $position+1
@@ -316,7 +259,6 @@ final class Criteria implements CriteriaInterface
                 }
 
                 $tokenSequence[$position] = new RightComparisonOperandToken($lexeme);
-                
             } else {
                 throw new EntityGatewayException(
                     \sprintf(
@@ -338,10 +280,7 @@ final class Criteria implements CriteriaInterface
     {
         $string = '';
         foreach ($this->tokenSequence as $position => $token) {
-            if (0 !== $position &&
-                !($token instanceof QuoteToken && $this->tokenSequence[$position-1] instanceof ComparsionOperatorToken) &&
-                !($token instanceof RightComparisonOperandToken && $this->tokenSequence[$position-1] instanceof QuoteToken)
-            ) {
+            if (0 !== $position) {
                 $string .= ' ';
             }
 
