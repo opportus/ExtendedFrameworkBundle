@@ -2,6 +2,7 @@
 
 namespace Opportus\ExtendedFrameworkBundle\EventSubscriber;
 
+use Opportus\ExtendedFrameworkBundle\Annotation\ControllerAnnotationReaderInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResult;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
@@ -24,18 +25,25 @@ use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 final class ResponseGeneratorSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\Generator\ResponseGeneratorInterface $responseGenerator
+     * @var ResponseGeneratorInterface $responseGenerator
      */
     private $responseGenerator;
 
     /**
+     * @var ControllerAnnotationReaderInterface $controllerAnnotationReader
+     */
+    private $controllerAnnotationReader;
+
+    /**
      * Constructs the response generator subscriber.
      *
-     * @param Opportus\ExtendedFrameworkBundle\Generator\ResponseGeneratorInterface $responseGenerator
+     * @param ResponseGeneratorInterface $responseGenerator
+     * @param ControllerAnnotationReaderInterface $controllerAnnotationReader
      */
-    public function __construct(ResponseGeneratorInterface $responseGenerator)
+    public function __construct(ResponseGeneratorInterface $responseGenerator, ControllerAnnotationReaderInterface $controllerAnnotationReader)
     {
         $this->responseGenerator = $responseGenerator;
+        $this->controllerAnnotationReader = $controllerAnnotationReader;
     }
 
     /**
@@ -56,8 +64,8 @@ final class ResponseGeneratorSubscriber implements EventSubscriberInterface
     /**
      * Generates a response on the kernel view.
      *
-     * @param Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent $event
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @param GetResponseForControllerResultEvent $event
+     * @throws GeneratorException
      */
     public function generateOnKernelView(GetResponseForControllerResultEvent $event)
     {
@@ -80,8 +88,8 @@ final class ResponseGeneratorSubscriber implements EventSubscriberInterface
     /**
      * Generates a response on the kernel exception.
      *
-     * @param Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @param GetResponseForExceptionEvent $event
+     * @throws GeneratorException
      */
     public function generateOnKernelException(GetResponseForExceptionEvent $event)
     {
@@ -104,20 +112,24 @@ final class ResponseGeneratorSubscriber implements EventSubscriberInterface
     /**
      * Gets the contextual response configuration.
      * 
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface $controllerResult
-     * @param Symfony\Component\HttpFoundation\Request $request
-     * @return Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractResponseConfiguration
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @param ControllerResultInterface $controllerResult
+     * @param Request $request
+     * @return AbstractResponseConfiguration
+     * @throws GeneratorException
      */
     private function getContextualResponseConfiguration(ControllerResultInterface $controllerResult, Request $request): AbstractResponseConfiguration
     {
         $responseConfigurations = $request->attributes->get('_extended_framework_configurations')['response'] ?? [];
 
         if (empty($responseConfigurations)) {
-            throw new GeneratorException(\sprintf(
-                'Response of action "%s" must be configured in order for the response generator to generate a response.',
-                $request->attributes->get('_controller')
-            ));
+            $responseConfigurations = $this->controllerAnnotationReader->getControllerAnnotations($request)['response'] ?? [];
+
+            if (empty($responseConfigurations)) {
+                throw new GeneratorException(\sprintf(
+                    'Response of action "%s" must be configured in order for the response generator to generate a response.',
+                    $request->attributes->get('_controller')
+                ));
+            }
         }
 
         foreach ($responseConfigurations as $responseConfiguration) {

@@ -2,6 +2,8 @@
 
 namespace Opportus\ExtendedFrameworkBundle\DependencyInjection;
 
+use Opportus\ExtendedFrameworkBundle\Annotation\AnnotationReaderInterface;
+use Opportus\ExtendedFrameworkBundle\Annotation\ControllerAnnotationReaderInterface;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface;
 use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface;
 use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface;
@@ -43,6 +45,7 @@ final class OpportusExtendedFrameworkExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
 
+        $this->registerAnnotationServices($configs, $container, $loader);
         $this->registerDataFetcherServices($configs, $container, $loader);
         $this->registerTemplateEngineServices($configs, $container, $loader);
         $this->registerEntityGatewayServices($configs, $container, $loader);
@@ -51,6 +54,22 @@ final class OpportusExtendedFrameworkExtension extends Extension
         $this->registerValidatorServices($configs, $container, $loader);
 
         $this->autoTag($container);
+    }
+
+    /**
+     * Registers the annotation services.
+     *
+     * @param array $configs
+     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param Symfony\Component\DependencyInjection\Loader\XmlFileLoader $loader
+     * @throws Opportus\ExtendedFrameworkBundle\DependencyInjection\DependencyInjectionException
+     */
+    private function registerAnnotationServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
+    {
+        $loader->load('annotation.xml');
+
+        $container->setAlias(AnnotationReaderInterface::class, 'opportus_extended_framework.annotation_reader');
+        $container->setAlias(ControllerAnnotationReaderInterface::class, 'opportus_extended_framework.controller_annotation_reader');
     }
 
     /**

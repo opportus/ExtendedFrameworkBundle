@@ -14,6 +14,7 @@
         <service id="opportus_extended_framework.response_generator_subscriber" class="Opportus\ExtendedFrameworkBundle\EventSubscriber\ResponseGeneratorSubscriber" public="false">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="opportus_extended_framework.response_generator" />
+            <argument type="service" id="opportus_extended_framework.controller_annotation_reader" />
         </service>
 
         <service id="opportus_extended_framework.flash_generator_subscriber" class="Opportus\ExtendedFrameworkBundle\EventSubscriber\FlashGeneratorSubscriber" public="false">
@@ -23,7 +24,7 @@
 
         <service id="opportus_extended_framework.annotation_reader_subscriber" class="Opportus\ExtendedFrameworkBundle\EventSubscriber\AnnotationReaderSubscriber" public="false">
             <tag name="kernel.event_subscriber" />
-            <argument type="service" id="annotation_reader" />
+            <argument type="service" id="opportus_extended_framework.controller_annotation_reader" />
         </service>
 
     </services>
