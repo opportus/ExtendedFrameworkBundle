@@ -3,6 +3,9 @@
 namespace Opportus\ExtendedFrameworkBundle\DataFetcher;
 
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\AccessorInterface;
+use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\GetterAcessor;
+use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\KeyAccessor;
+use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAcessor;
 
 /**
  * The data fetcher interface.
@@ -16,9 +19,9 @@ interface DataFetcherInterface
     /**
      * Fetches a datum from data.
      *
-     * @param Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\GetterAccessor|Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor|Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\KeyAccessor $accessor
+     * @param GetterAccessor|PropertyAccessor|KeyAccessor $accessor
      * @param object|array $data
-     * @throws Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherException
+     * @throws DataFetcherException
      */
     public function fetch(AccessorInterface $accessor, $data);
 }

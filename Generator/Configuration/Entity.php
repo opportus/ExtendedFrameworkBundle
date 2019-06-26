@@ -25,7 +25,7 @@ final class Entity extends AbstractDataConfiguration
      * Constructs the entity configuration.
      *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {

@@ -2,12 +2,11 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Configuration;
 
-use Opportus\ExtendedFrameworkBundle\Annotation\AnnotationInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 
 /**
  * The abstract value configuration.
- * 
+ *
  * The abstract value configuration represents a value that will be generated at runtime.
  * Extend from this a specific value generator configuration such as `Route` or `Trans`.
  *
@@ -23,7 +22,7 @@ abstract class AbstractValueConfiguration implements ConfigurationInterface
      * Constructs the value configuration.
      *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {
@@ -56,7 +55,7 @@ abstract class AbstractValueConfiguration implements ConfigurationInterface
 
     /**
      * Gets the annotation alias.
-     * 
+     *
      * @return string
      */
     public function getAlias(): string

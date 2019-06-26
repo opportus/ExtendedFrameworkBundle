@@ -30,7 +30,7 @@ final class EntityCollection extends AbstractDataConfiguration
      * Constructs the entity collection configuration.
      *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {

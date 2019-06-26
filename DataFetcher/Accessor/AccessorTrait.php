@@ -20,9 +20,9 @@ trait AccessorTrait
 
     /**
      * Constructs the accessor.
-     * 
+     *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherException
+     * @throws DataFetcherException
      */
     public function __construct(array $values = [])
     {
@@ -38,7 +38,7 @@ trait AccessorTrait
 
     /**
      * Gets the name.
-     * 
+     *
      * @return string
      */
     public function getName(): string
@@ -48,7 +48,7 @@ trait AccessorTrait
 
     /**
      * Gets the annotation alias.
-     * 
+     *
      * @return string
      */
     public function getAnnotationAlias(): string

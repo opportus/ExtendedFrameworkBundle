@@ -24,7 +24,7 @@ final class RightComparisonOperandToken implements TokenInterface
      * Constructs the right comparison operand token.
      *
      * @param string $lexeme
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException If the lexeme does not match the pattern
+     * @throws EntityGatewayException If the lexeme does not match the pattern
      */
     public function __construct(string $lexeme)
     {

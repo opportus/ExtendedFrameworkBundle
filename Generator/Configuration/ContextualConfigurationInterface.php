@@ -17,8 +17,8 @@ interface ContextualConfigurationInterface extends ConfigurationInterface
     /**
      * Defines whether this configuration is in context.
      *
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface $controllerResult
-     * @param Symfony\Component\HttpFoundation\Request $request
+     * @param ControllerResultInterface $controllerResult
+     * @param Request $request
      * @return bool
      */
     public function isInContext(ControllerResultInterface $controllerResult, Request $request): bool;

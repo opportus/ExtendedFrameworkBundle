@@ -2,10 +2,10 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Configuration;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\GetterAccessor;
-use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\KeyAccessor;
+use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 
 /**
  * The route configuration.
@@ -31,9 +31,9 @@ final class Route extends AbstractValueConfiguration
 
     /**
      * Constructs the route configuration.
-     * 
+     *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {
@@ -78,7 +78,7 @@ final class Route extends AbstractValueConfiguration
 
     /**
      * Gets the name.
-     * 
+     *
      * @return string
      */
     public function getName(): string
@@ -88,7 +88,7 @@ final class Route extends AbstractValueConfiguration
 
     /**
      * Gets the parameters.
-     * 
+     *
      * @return array
      */
     public function getParameters(): array

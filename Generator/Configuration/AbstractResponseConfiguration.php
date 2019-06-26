@@ -3,8 +3,8 @@
 namespace Opportus\ExtendedFrameworkBundle\Generator\Configuration;
 
 use Opportus\ExtendedFrameworkBundle\Annotation\AnnotationInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -24,7 +24,7 @@ abstract class AbstractResponseConfiguration implements ContextualConfigurationI
     private $statusCode;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractViewConfiguration $content
+     * @var AbstractViewConfiguration $content
      */
     private $content;
 
@@ -35,9 +35,9 @@ abstract class AbstractResponseConfiguration implements ContextualConfigurationI
 
     /**
      * Constructs the response configuration.
-     * 
+     *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {
@@ -114,7 +114,7 @@ abstract class AbstractResponseConfiguration implements ContextualConfigurationI
 
     /**
      * Gets the annotation alias.
-     * 
+     *
      * @return string
      */
     public function getAnnotationAlias(): string
@@ -124,7 +124,7 @@ abstract class AbstractResponseConfiguration implements ContextualConfigurationI
 
     /**
      * Gets the status code.
-     * 
+     *
      * @return int
      */
     public function getStatusCode(): int
@@ -134,8 +134,8 @@ abstract class AbstractResponseConfiguration implements ContextualConfigurationI
 
     /**
      * Gets the content.
-     * 
-     * @return Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractViewConfiguration
+     *
+     * @return AbstractViewConfiguration
      */
     public function getContent(): AbstractViewConfiguration
     {

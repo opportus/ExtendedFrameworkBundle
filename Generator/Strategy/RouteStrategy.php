@@ -2,11 +2,11 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Route as RouteConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractValueConfiguration;
+use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Route as RouteConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -20,20 +20,20 @@ use Symfony\Component\Routing\RouterInterface;
 final class RouteStrategy implements ValueStrategyInterface
 {
     /**
-     * @var Symfony\Component\Routing\RouterInterface $router
+     * @var RouterInterface $router
      */
     private $router;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface $dataFetcher
+     * @var DataFetcherInterface $dataFetcher
      */
     private $dataFetcher;
 
     /**
      * Constructs the route strategy.
      *
-     * @param Symfony\Component\Routing\RouterInterface $router
-     * @param Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface $dataFetcher
+     * @param RouterInterface $router
+     * @param DataFetcherInterface $dataFetcher
      */
     public function __construct(RouterInterface $router, DataFetcherInterface $dataFetcher)
     {

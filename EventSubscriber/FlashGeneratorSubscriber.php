@@ -23,14 +23,14 @@ use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 final class FlashGeneratorSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\Generator\FlashGeneratorInterface $flashGenerator
+     * @var FlashGeneratorInterface $flashGenerator
      */
     private $flashGenerator;
 
     /**
      * Constructs the flash generator subscriber.
      *
-     * @param Opportus\ExtendedFrameworkBundle\Generator\FlashGeneratorInterface $flashGenerator
+     * @param FlashGeneratorInterface $flashGenerator
      */
     public function __construct(FlashGeneratorInterface $flashGenerator)
     {
@@ -55,7 +55,7 @@ final class FlashGeneratorSubscriber implements EventSubscriberInterface
     /**
      * Generates a flash on the kernel view.
      *
-     * @param Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent $event
+     * @param GetResponseForControllerResultEvent $event
      */
     public function generateOnKernelView(GetResponseForControllerResultEvent $event)
     {
@@ -82,7 +82,7 @@ final class FlashGeneratorSubscriber implements EventSubscriberInterface
     /**
      * Generates a flash on the kernel exception.
      *
-     * @param Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
+     * @param GetResponseForExceptionEvent $event
      */
     public function generateOnKernelException(GetResponseForExceptionEvent $event)
     {
@@ -109,9 +109,9 @@ final class FlashGeneratorSubscriber implements EventSubscriberInterface
     /**
      * Gets the contextual flash configuration.
      * 
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface $controllerResult
-     * @param Symfony\Component\HttpFoundation\Request $request
-     * @return null|Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractFlashConfiguration
+     * @param ControllerResultInterface $controllerResult
+     * @param Request $request
+     * @return null|AbstractFlashConfiguration
      */
     private function getContextualFlashConfiguration(ControllerResultInterface $controllerResult, Request $request): ?AbstractFlashConfiguration
     {

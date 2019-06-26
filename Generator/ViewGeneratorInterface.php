@@ -17,12 +17,12 @@ interface ViewGeneratorInterface
 {
     /**
      * Generates the view.
-     * 
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractViewConfiguration $viewConfiguration
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface $controllerResult
-     * @param Symfony\Component\HttpFoundation\Request $request
+     *
+     * @param AbstractViewConfiguration $viewConfiguration
+     * @param ControllerResultInterface $controllerResult
+     * @param Request $request
      * @return string
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function generate(AbstractViewConfiguration $viewConfiguration, ControllerResultInterface $controllerResult, Request $request): string;
 }

@@ -45,7 +45,7 @@ final class PutEntity extends AbstractDataConfiguration
      * Constructs the put entity configuration.
      *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {

@@ -2,12 +2,12 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractDataConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Entity as EntityConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
-use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface;
-use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,20 +21,20 @@ use Symfony\Component\HttpFoundation\Response;
 final class EntityStrategy implements DataStrategyInterface
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface $entityGateway
+     * @var EntityGatewayInterface $entityGateway
      */
     private $entityGateway;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface $queryBuilder
+     * @var QueryBuilderInterface $queryBuilder
      */
     private $queryBuilder;
 
     /**
      * Constructs the submitted entity strategy.
      *
-     * @param Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface $entityGateway
-     * @param Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface $queryBuilder
+     * @param EntityGatewayInterface $entityGateway
+     * @param QueryBuilderInterface $queryBuilder
      */
     public function __construct(EntityGatewayInterface $entityGateway, QueryBuilderInterface $queryBuilder)
     {
@@ -45,7 +45,7 @@ final class EntityStrategy implements DataStrategyInterface
     /**
      * {@inheritdoc}
      *
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException On HTTP client errors
+     * @throws ControllerException On HTTP client errors
      */
     public function generate(AbstractDataConfiguration $dataConfiguration, Request $request): object
     {

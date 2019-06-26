@@ -17,14 +17,14 @@ use Doctrine\ORM\EntityManagerInterface;
 final class DoctrineEntityGateway implements EntityGatewayInterface
 {
     /**
-     * @var Doctrine\ORM\EntityManagerInterface $entityManager
+     * @var EntityManagerInterface $entityManager
      */
     private $entityManager;
 
     /**
      * Constructs the Doctrine entity gateway.
      *
-     * @param Doctrine\ORM\EntityManagerInterface $entityManager
+     * @param EntityManagerInterface $entityManager
      */
     public function __construct(EntityManagerInterface $entityManager)
     {

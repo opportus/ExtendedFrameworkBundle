@@ -2,11 +2,11 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Trans as TransConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractValueConfiguration;
+use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Trans as TransConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -20,20 +20,20 @@ use Symfony\Component\Translation\TranslatorInterface;
 final class TransStrategy implements ValueStrategyInterface
 {
     /**
-     * @var Symfony\Component\Translation\TranslatorInterface $translator
+     * @var TranslatorInterface $translator
      */
     private $translator;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface $dataFetcher
+     * @var DataFetcherInterface $dataFetcher
      */
     private $dataFetcher;
 
     /**
      * Constructs the trans strategy.
      *
-     * @param Symfony\Component\Translation\TranslatorInterface $translator
-     * @param Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface $dataFetcher
+     * @param TranslatorInterface $translator
+     * @param DataFetcherInterface $dataFetcher
      */
     public function __construct(TranslatorInterface $translator, DataFetcherInterface $dataFetcher)
     {
@@ -46,7 +46,7 @@ final class TransStrategy implements ValueStrategyInterface
      */
     public function generate(AbstractValueConfiguration $valueConfiguration, ControllerResultInterface $controllerResult, Request $request): string
     {
-        if (false === $this->supports($valueConfiguration, $request)) {
+        if (false === $this->supports($valueConfiguration, $controllerResult, $request)) {
             throw new GeneratorException(\sprintf(
                 '"%s" does not support the value configuration within the current context.',
                 self::class

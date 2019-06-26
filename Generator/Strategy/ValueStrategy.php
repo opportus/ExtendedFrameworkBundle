@@ -2,11 +2,11 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Value as ValueConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractValueConfiguration;
+use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Value as ValueConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -19,14 +19,14 @@ use Symfony\Component\HttpFoundation\Request;
 final class ValueStrategy implements ValueStrategyInterface
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface $dataFetcher
+     * @var DataFetcherInterface $dataFetcher
      */
     private $dataFetcher;
 
     /**
      * Constructs the value strategy.
      *
-     * @param Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface $dataFetcher
+     * @param DataFetcherInterface $dataFetcher
      */
     public function __construct(DataFetcherInterface $dataFetcher)
     {

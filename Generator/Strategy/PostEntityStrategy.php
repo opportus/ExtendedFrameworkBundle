@@ -2,16 +2,16 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractDataConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\PostEntity as PostEntityConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ObjectMapper\ObjectMapperInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Serializer\Exception\NotEncodableValueException;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Exception\NotEncodableValueException;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * The post entity strategy.
@@ -23,26 +23,26 @@ use Symfony\Component\HttpFoundation\Response;
 final class PostEntityStrategy implements DataStrategyInterface
 {
     /**
-     * @var Symfony\Component\Serializer\SerializerInterface $serializer
+     * @var SerializerInterface $serializer
      */
     private $serializer;
 
     /**
-     * @var Symfony\Component\Validator\Validator\ValidatorInterface $validator
+     * @var ValidatorInterface $validator
      */
     private $validator;
 
     /**
-     * @var Opportus\ObjectMapper\ObjectMapperInterface $objectMapper
+     * @var ObjectMapperInterface $objectMapper
      */
     private $objectMapper;
 
     /**
      * Constructs the post entity strategy.
      *
-     * @param Symfony\Component\Serializer\SerializerInterface $serializer
-     * @param Symfony\Component\Validator\Validator\ValidatorInterface $validator
-     * @param Opportus\ObjectMapper\ObjectMapperInterface $objectMapper
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     * @param ObjectMapperInterface $objectMapper
      */
     public function __construct(SerializerInterface $serializer, ValidatorInterface $validator, ObjectMapperInterface $objectMapper)
     {
@@ -54,7 +54,7 @@ final class PostEntityStrategy implements DataStrategyInterface
     /**
      * {@inheritdoc}
      *
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException On HTTP client errors
+     * @throws ControllerException On HTTP client errors
      */
     public function generate(AbstractDataConfiguration $dataConfiguration, Request $request): object
     {

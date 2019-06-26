@@ -2,10 +2,10 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Configuration;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\GetterAccessor;
-use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\KeyAccessor;
+use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 
 /**
  * The value configuration.
@@ -31,9 +31,9 @@ final class Value extends AbstractValueConfiguration
 
     /**
      * Constructs the value configuration.
-     * 
+     *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {
@@ -78,7 +78,7 @@ final class Value extends AbstractValueConfiguration
 
     /**
      * Gets the value.
-     * 
+     *
      * @return string
      */
     public function getValue(): string
@@ -88,7 +88,7 @@ final class Value extends AbstractValueConfiguration
 
     /**
      * Gets the parameters.
-     * 
+     *
      * @return array
      */
     public function getParameters(): array

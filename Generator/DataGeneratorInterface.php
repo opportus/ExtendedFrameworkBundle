@@ -17,10 +17,10 @@ interface DataGeneratorInterface
     /**
      * Generates the data.
      *
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractDataConfiguration $dataConfiguration
-     * @param  Symfony\Component\HttpFoundation\Request $request
+     * @param AbstractDataConfiguration $dataConfiguration
+     * @param Request $request
      * @return object
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function generate(AbstractDataConfiguration $dataConfiguration, Request $request): object;
 }

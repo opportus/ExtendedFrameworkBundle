@@ -15,12 +15,12 @@ class ControllerException extends \Exception implements ControllerResultInterfac
 
     /**
      * Constructs the controller exception.
-     * 
+     *
      * @param int $statusCode
      * @param mixed $data
      * @param string $message
      * @param int $code
-     * @param throwable $previous
+     * @param Throwable $previous
      */
     public function __construct(int $statusCode, $data = null, string $message = '', int $code = 0, \Throwable $previous = null)
     {

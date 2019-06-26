@@ -2,11 +2,11 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
-use Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractFlashConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Flash as FlashConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
+use Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -20,20 +20,20 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 final class FlashStrategy implements FlashStrategyInterface
 {
     /**
-     * @var Symfony\Component\HttpFoundation\Session\SessionInterface $session
+     * @var SessionInterface $session
      */
     private $session;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface $valueGenerator
+     * @var ValueGeneratorInterface $valueGenerator
      */
     private $valueGenerator;
 
     /**
      * Constructs the flash strategy.
      *
-     * @param Symfony\Component\HttpFoundation\Session\SessionInterface $session
-     * @param Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface $valueGenerator
+     * @param SessionInterface $session
+     * @param ValueGeneratorInterface $valueGenerator
      */
     public function __construct(SessionInterface $session, ValueGeneratorInterface $valueGenerator)
     {

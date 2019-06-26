@@ -14,7 +14,7 @@ use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException;
 final class Criteria implements CriteriaInterface
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\EntityGateway\Criteria\TokenInterface[] $tokenSequence
+     * @var TokenInterface[] $tokenSequence
      */
     private $tokenSequence;
 
@@ -33,7 +33,7 @@ final class Criteria implements CriteriaInterface
      *
      * @param string $expression
      * @return array The token sequence
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException
+     * @throws EntityGatewayException
      */
     private function tokenize(string $expression): array
     {
@@ -329,7 +329,7 @@ final class Criteria implements CriteriaInterface
     /**
      * {@inheritDoc}
      *
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException
+     * @throws EntityGatewayException
      */
     public function offsetSet($offset, $value)
     {
@@ -342,7 +342,7 @@ final class Criteria implements CriteriaInterface
     /**
      * {@inheritDoc}
      *
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException
+     * @throws EntityGatewayException
      */
     public function offsetUnset($offset)
     {

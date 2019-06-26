@@ -25,7 +25,7 @@ abstract class AbstractDataConfiguration implements ConfigurationInterface, Anno
      * Constructs the data configuration.
      *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {

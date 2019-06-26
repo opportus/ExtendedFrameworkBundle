@@ -60,9 +60,9 @@ final class OpportusExtendedFrameworkExtension extends Extension
      * Registers the annotation services.
      *
      * @param array $configs
-     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param Symfony\Component\DependencyInjection\Loader\XmlFileLoader $loader
-     * @throws Opportus\ExtendedFrameworkBundle\DependencyInjection\DependencyInjectionException
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader $loader
+     * @throws DependencyInjectionException
      */
     private function registerAnnotationServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
     {
@@ -76,9 +76,9 @@ final class OpportusExtendedFrameworkExtension extends Extension
      * Registers the data fetcher services.
      *
      * @param array $configs
-     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param Symfony\Component\DependencyInjection\Loader\XmlFileLoader $loader
-     * @throws Opportus\ExtendedFrameworkBundle\DependencyInjection\DependencyInjectionException
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader $loader
+     * @throws DependencyInjectionException
      */
     private function registerDataFetcherServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
     {
@@ -91,9 +91,9 @@ final class OpportusExtendedFrameworkExtension extends Extension
      * Registers the template engine services.
      *
      * @param array $configs
-     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param Symfony\Component\DependencyInjection\Loader\XmlFileLoader $loader
-     * @throws Opportus\ExtendedFrameworkBundle\DependencyInjection\DependencyInjectionException
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader $loader
+     * @throws DependencyInjectionException
      */
     private function registerTemplateEngineServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
     {
@@ -128,9 +128,9 @@ final class OpportusExtendedFrameworkExtension extends Extension
      * Registers the entity gateway services.
      *
      * @param array $configs
-     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param Symfony\Component\DependencyInjection\Loader\XmlFileLoader $loader
-     * @throws Opportus\ExtendedFrameworkBundle\DependencyInjection\DependencyInjectionException
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader $loader
+     * @throws DependencyInjectionException
      */
     private function registerEntityGatewayServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
     {
@@ -170,9 +170,9 @@ final class OpportusExtendedFrameworkExtension extends Extension
      * Registers the generator services.
      *
      * @param array $configs
-     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param Symfony\Component\DependencyInjection\Loader\XmlFileLoader $loader
-     * @throws Opportus\ExtendedFrameworkBundle\DependencyInjection\DependencyInjectionException
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader $loader
+     * @throws DependencyInjectionException
      */
     private function registerGeneratorServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
     {
@@ -193,9 +193,9 @@ final class OpportusExtendedFrameworkExtension extends Extension
      * Registers the subscriber services.
      *
      * @param array $configs
-     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param Symfony\Component\DependencyInjection\Loader\XmlFileLoader $loader
-     * @throws Opportus\ExtendedFrameworkBundle\DependencyInjection\DependencyInjectionException
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader $loader
+     * @throws DependencyInjectionException
      */
     private function registerSubscriberServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
     {
@@ -206,9 +206,9 @@ final class OpportusExtendedFrameworkExtension extends Extension
      * Registers the validator services.
      *
      * @param array $configs
-     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
-     * @param Symfony\Component\DependencyInjection\Loader\XmlFileLoader $loader
-     * @throws Opportus\ExtendedFrameworkBundle\DependencyInjection\DependencyInjectionException
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader $loader
+     * @throws DependencyInjectionException
      */
     private function registerValidatorServices(array $configs, ContainerBuilder $container, XmlFileLoader $loader)
     {
@@ -218,7 +218,7 @@ final class OpportusExtendedFrameworkExtension extends Extension
     /**
      * Auto tags.
      *
-     * @param Symfony\Component\DependencyInjection\ContainerBuilder $container
+     * @param ContainerBuilder $container
      */
     public function autoTag(ContainerBuilder $container)
     {

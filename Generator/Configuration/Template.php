@@ -25,7 +25,7 @@ final class Template extends AbstractViewConfiguration
      * Constructs the template configuration.
      *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {

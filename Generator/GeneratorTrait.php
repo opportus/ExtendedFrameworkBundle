@@ -12,14 +12,14 @@ namespace Opportus\ExtendedFrameworkBundle\Generator;
 trait GeneratorTrait
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\Generator\Strategy\StrategyInterface[] $strategies
+     * @var array $strategies
      */
     private $strategies;
 
     /**
      * Constructs the generator.
      *
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Strategy\StrategyInterface[] $strategies
+     * @param array $strategies
      */
     public function __construct(array $strategies)
     {

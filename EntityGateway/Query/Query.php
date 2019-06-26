@@ -25,7 +25,7 @@ final class Query implements QueryInterface
     private $entityFqcn;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\EntityGateway\Criteria\CriteriaInterface $criteria
+     * @var CriteriaInterface $criteria
      */
     private $criteria;
 

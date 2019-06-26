@@ -2,9 +2,8 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Configuration;
 
-use Opportus\ExtendedFrameworkBundle\Annotation\AnnotationInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -27,7 +26,7 @@ abstract class AbstractViewConfiguration implements ContextualConfigurationInter
      * Constructs the view configuration.
      *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {
@@ -68,7 +67,7 @@ abstract class AbstractViewConfiguration implements ContextualConfigurationInter
 
     /**
      * Gets the annotation alias.
-     * 
+     *
      * @return string
      */
     public function getAnnotationAlias(): string

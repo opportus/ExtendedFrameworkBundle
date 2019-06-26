@@ -2,10 +2,10 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractViewConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Template as TemplateConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\TemplateEngine\TemplateEngineInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,14 +19,14 @@ use Symfony\Component\HttpFoundation\Request;
 final class TemplateStrategy implements ViewStrategyInterface
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\TemplateEngine\TemplateEngineInterface $templateEngine
+     * @var TemplateEngineInterface $templateEngine
      */
     private $templateEngine;
 
     /**
      * Constructs the Twig view strategy.
      *
-     * @param Opportus\ExtendedFrameworkBundle\TemplateEngine\TemplateEngineInterface $templateEngine
+     * @param TemplateEngineInterface $templateEngine
      */
     public function __construct(TemplateEngineInterface $templateEngine)
     {

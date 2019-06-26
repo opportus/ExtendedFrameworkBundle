@@ -16,7 +16,7 @@ interface TemplateEngineInterface
      * 
      * @param string $template
      * @param array $context
-     * @throws Opportus\ExtendedFrameworkBundle\TemplateEngine\TemplateEngineException
+     * @throws TemplateEngineException
      */
     public function render(string $template, array $context = []): string;
 }

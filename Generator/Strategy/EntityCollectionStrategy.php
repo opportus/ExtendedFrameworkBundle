@@ -2,15 +2,15 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractDataConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\EntityCollection as EntityCollectionConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
-use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface;
-use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * The entity collection strategy.
@@ -22,26 +22,26 @@ use Symfony\Component\HttpFoundation\Response;
 final class EntityCollectionStrategy implements DataStrategyInterface
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface $entityGateway
+     * @var EntityGatewayInterface $entityGateway
      */
     private $entityGateway;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface $queryBuilder
+     * @var QueryBuilderInterface $queryBuilder
      */
     private $queryBuilder;
 
     /**
-     * @var Symfony\Component\Validator\Validator\ValidatorInterface $validator
+     * @var ValidatorInterface $validator
      */
     private $validator;
 
     /**
      * Constructs the submitted entity strategy.
      *
-     * @param Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface $entityGateway
-     * @param Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface $queryBuilder
-     * @param Symfony\Component\Validator\Validator\ValidatorInterface $validator
+     * @param EntityGatewayInterface $entityGateway
+     * @param QueryBuilderInterface $queryBuilder
+     * @param ValidatorInterface $validator
      */
     public function __construct(EntityGatewayInterface $entityGateway, QueryBuilderInterface $queryBuilder, ValidatorInterface $validator)
     {
@@ -53,7 +53,7 @@ final class EntityCollectionStrategy implements DataStrategyInterface
     /**
      * {@inheritdoc}
      *
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException On HTTP client errors
+     * @throws ControllerException On HTTP client errors
      */
     public function generate(AbstractDataConfiguration $dataConfiguration, Request $request): object
     {

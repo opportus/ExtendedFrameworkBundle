@@ -14,14 +14,14 @@ use Twig\Environment;
 final class TwigTemplateEngine implements TemplateEngineInterface
 {
     /**
-     * @var Twig\Environment $twig
+     * @var Environment $twig
      */
     private $twig;
 
     /**
      * Constructs the Twig template engine.
      *
-     * @param Twig\Environment $twig
+     * @param Environment $twig
      */
     public function __construct(Environment $twig)
     {

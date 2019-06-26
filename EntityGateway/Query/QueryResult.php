@@ -22,7 +22,7 @@ final class QueryResult implements QueryResultInterface
      * Constructs the query result.
      *
      * @param object[] $entities
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException If the argument is not of type array and if it contains something else than 0 or more objects
+     * @throws EntityGatewayException If the argument is not of type array and if it contains something else than 0 or more objects
      */
     public function __construct($entities)
     {
@@ -96,7 +96,7 @@ final class QueryResult implements QueryResultInterface
     /**
      * {@inheritDoc}
      *
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException
+     * @throws EntityGatewayException
      */
     public function offsetSet($offset, $value)
     {
@@ -109,7 +109,7 @@ final class QueryResult implements QueryResultInterface
     /**
      * {@inheritDoc}
      *
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException
+     * @throws EntityGatewayException
      */
     public function offsetUnset($offset)
     {

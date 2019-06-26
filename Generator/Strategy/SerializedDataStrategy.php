@@ -2,13 +2,13 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
-use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractViewConfiguration;
-use Opportus\ExtendedFrameworkBundle\Generator\Configuration\SerializedData as SerializedDataConfiguration;
-use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface;
 use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryResult;
+use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractViewConfiguration;
+use Opportus\ExtendedFrameworkBundle\Generator\Configuration\SerializedData as SerializedDataConfiguration;
+use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
+use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ObjectMapper\ObjectMapperInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -23,26 +23,26 @@ use Symfony\Component\Serializer\SerializerInterface;
 final class SerializedDataStrategy implements ViewStrategyInterface
 {
     /**
-     * @var Symfony\Component\Serializer\SerializerInterface $serializer
+     * @var SerializerInterface $serializer
      */
     private $serializer;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface $dataFetcher
+     * @var DataFetcherInterface $dataFetcher
      */
     private $dataFetcher;
 
     /**
-     * @var Opportus\ObjectMapper\ObjectMapperInterface $objectMapper
+     * @var ObjectMapperInterface $objectMapper
      */
     private $objectMapper;
 
     /**
      * Constructs the serialized data strategy.
      *
-     * @param Symfony\Component\Serializer\SerializerInterface $serializer
-     * @param Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface $dataFetcher
-     * @param Opportus\ObjectMapper\ObjectMapperInterface $objectMapper
+     * @param SerializerInterface $serializer
+     * @param DataFetcherInterface $dataFetcher
+     * @param ObjectMapperInterface $objectMapper
      */
     public function __construct(SerializerInterface $serializer, DataFetcherInterface $dataFetcher, ObjectMapperInterface $objectMapper)
     {
@@ -67,7 +67,6 @@ final class SerializedDataStrategy implements ViewStrategyInterface
 
         if (null === $accessor) {
             $data = $controllerResult->getData();
-
         } else {
             $data = $this->dataFetcher->fetch($accessor, $controllerResult->getData());
         }
@@ -81,7 +80,6 @@ final class SerializedDataStrategy implements ViewStrategyInterface
             if ($data instanceof QueryResult) {
                 if (null === $serializationFqcn) {
                     $data = $data->toArray();
-
                 } else {
                     $serializableItems = [];
                     foreach ($data as $entity) {
@@ -90,7 +88,6 @@ final class SerializedDataStrategy implements ViewStrategyInterface
 
                     $data = $serializableItems;
                 }
-
             } elseif (null !== $serializationFqcn) {
                 $data = $this->objectMapper->map($data, $serializationFqcn);
             }

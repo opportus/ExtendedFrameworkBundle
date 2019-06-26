@@ -18,10 +18,10 @@ interface FlashGeneratorInterface
     /**
      * Generates the flash.
      *
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractFlashConfiguration $flashConfiguration
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface $controllerResult
-     * @param  Symfony\Component\HttpFoundation\Request $request
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @param AbstractFlashConfiguration $flashConfiguration
+     * @param ControllerResultInterface $controllerResult
+     * @param Request $request
+     * @throws GeneratorException
      */
     public function generate(AbstractFlashConfiguration $flashConfiguration, ControllerResultInterface $controllerResult, Request $request);
 }

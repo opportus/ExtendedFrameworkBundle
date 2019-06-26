@@ -3,8 +3,8 @@
 namespace Opportus\ExtendedFrameworkBundle\Generator\Configuration;
 
 use Opportus\ExtendedFrameworkBundle\Annotation\AnnotationInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -24,7 +24,7 @@ abstract class AbstractFlashConfiguration implements ContextualConfigurationInte
     private $statusCode;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractValueConfiguration $message
+     * @var AbstractValueConfiguration $message
      */
     private $message;
 
@@ -32,7 +32,7 @@ abstract class AbstractFlashConfiguration implements ContextualConfigurationInte
      * Constructs the flash configuration.
      *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {
@@ -89,7 +89,7 @@ abstract class AbstractFlashConfiguration implements ContextualConfigurationInte
 
     /**
      * Gets the annotation alias.
-     * 
+     *
      * @return string
      */
     public function getAnnotationAlias(): string
@@ -110,7 +110,7 @@ abstract class AbstractFlashConfiguration implements ContextualConfigurationInte
     /**
      * Gets the message.
      *
-     * @return Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractValueConfiguration $message
+     * @return AbstractValueConfiguration $message
      */
     public function getMessage(): AbstractValueConfiguration
     {

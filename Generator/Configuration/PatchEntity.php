@@ -45,7 +45,7 @@ final class PatchEntity extends AbstractDataConfiguration
      * Constructs the patch entity configuration.
      *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {

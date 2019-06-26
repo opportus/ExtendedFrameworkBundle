@@ -2,12 +2,12 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
-use Opportus\ExtendedFrameworkBundle\Generator\ViewGeneratorInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractResponseConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\Response as ResponseConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
+use Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\ViewGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,20 +21,20 @@ use Symfony\Component\HttpFoundation\Response;
 final class ResponseStrategy implements ResponseStrategyInterface
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\Generator\ViewGeneratorInterface $viewGenerator
+     * @var ViewGeneratorInterface $viewGenerator
      */
     private $viewGenerator;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface $valueGenerator
+     * @var ValueGeneratorInterface $valueGenerator
      */
     private $valueGenerator;
 
     /**
      * Constructs the response strategy.
      *
-     * @param Opportus\ExtendedFrameworkBundle\Generator\ViewGeneratorInterface $viewGenerator
-     * @param Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface $valueGenerator
+     * @param ViewGeneratorInterface $viewGenerator
+     * @param ValueGeneratorInterface $valueGenerator
      */
     public function __construct(ViewGeneratorInterface $viewGenerator, ValueGeneratorInterface $valueGenerator)
     {

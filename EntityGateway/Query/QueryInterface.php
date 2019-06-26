@@ -23,7 +23,7 @@ interface QueryInterface
     /**
      * Gets the criteria.
      *
-     * @return Opportus\ExtendedFrameworkBundle\EntityGateway\Criteria\CriteriaInterface
+     * @return CriteriaInterface
      */
     public function getCriteria(): CriteriaInterface;
     

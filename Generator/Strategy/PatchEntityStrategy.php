@@ -2,19 +2,19 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractDataConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\PatchEntity as PatchEntityConfiguration;
 use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
-use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface;
-use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ObjectMapper\ObjectMapperInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Serializer\Exception\NotEncodableValueException;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Serializer\Exception\NotEncodableValueException;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * The patch entity strategy.
@@ -26,44 +26,44 @@ use Symfony\Component\HttpFoundation\Response;
 final class PatchEntityStrategy implements DataStrategyInterface
 {
     /**
-     * @var Symfony\Component\Serializer\SerializerInterface $serializer
+     * @var SerializerInterface $serializer
      */
     private $serializer;
 
     /**
-     * @var Symfony\Component\Validator\Validator\ValidatorInterface $validator
+     * @var ValidatorInterface $validator
      */
     private $validator;
 
     /**
-     * @var Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface $authorizationChecker
+     * @var AuthorizationCheckerInterface $authorizationChecker
      */
     private $authorizationChecker;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface $entityGateway
+     * @var EntityGatewayInterface $entityGateway
      */
     private $entityGateway;
 
     /**
-     * @var Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface $queryBuilder
+     * @var QueryBuilderInterface $queryBuilder
      */
     private $queryBuilder;
 
     /**
-     * @var Opportus\ObjectMapper\ObjectMapperInterface $objectMapper
+     * @var ObjectMapperInterface $objectMapper
      */
     private $objectMapper;
 
     /**
      * Constructs the patch entity strategy.
      *
-     * @param Symfony\Component\Serializer\SerializerInterface $serializer
-     * @param Symfony\Component\Validator\Validator\ValidatorInterface $validator
-     * @param Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface $authorizationChecker
-     * @param Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface $entityGateway
-     * @param Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface $queryBuilder
-     * @param Opportus\ObjectMapper\ObjectMapperInterface $objectMapper
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param EntityGatewayInterface $entityGateway
+     * @param QueryBuilderInterface $queryBuilder
+     * @param ObjectMapperInterface $objectMapper
      */
     public function __construct(SerializerInterface $serializer, ValidatorInterface $validator, AuthorizationCheckerInterface $authorizationChecker, EntityGatewayInterface $entityGateway, QueryBuilderInterface $queryBuilder, ObjectMapperInterface $objectMapper)
     {
@@ -78,7 +78,7 @@ final class PatchEntityStrategy implements DataStrategyInterface
     /**
      * {@inheritdoc}
      *
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException On HTTP client errors
+     * @throws ControllerException On HTTP client errors
      */
     public function generate(AbstractDataConfiguration $dataConfiguration, Request $request): object
     {

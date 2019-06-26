@@ -2,10 +2,10 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Configuration;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\GetterAccessor;
-use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\KeyAccessor;
+use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 
 /**
  * The serialized data configuration.
@@ -30,15 +30,15 @@ final class SerializedData extends AbstractViewConfiguration
     private $serializationContext;
 
     /**
-     * @var null|Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\AccessorInterface $accessor
+     * @var null|AccessorInterface $accessor
      */
     private $accessor;
 
     /**
      * Constructs the serialized data configuration.
-     * 
+     *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {
@@ -100,7 +100,7 @@ final class SerializedData extends AbstractViewConfiguration
 
     /**
      * Gets the serialization FQCN.
-     * 
+     *
      * @return null|string
      */
     public function getSerializationFqcn(): ?string
@@ -110,7 +110,7 @@ final class SerializedData extends AbstractViewConfiguration
 
     /**
      * Gets the serialization context.
-     * 
+     *
      * @return array
      */
     public function getSerializationContext(): array
@@ -120,8 +120,8 @@ final class SerializedData extends AbstractViewConfiguration
 
     /**
      * Gets the accessor.
-     * 
-     * @return null|Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\AccessorInterface
+     *
+     * @return null|AccessorInterface
      */
     public function getAccessor(): ?AccessorInterface
     {

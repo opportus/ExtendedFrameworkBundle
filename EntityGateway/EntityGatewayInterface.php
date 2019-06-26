@@ -17,9 +17,9 @@ interface EntityGatewayInterface
     /**
      * Queries entities.
      *
-     * @param Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryInterface $query
-     * @return Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryResultInterface
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException If the persistence layer throws an exception
+     * @param QueryInterface $query
+     * @return QueryResultInterface
+     * @throws EntityGatewayException If the persistence layer throws an exception
      */
     public function query(QueryInterface $query): QueryResultInterface;
 
@@ -27,7 +27,7 @@ interface EntityGatewayInterface
      * Saves an entity.
      *
      * @param object $entity
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException If the persistence layer throws an exception
+     * @throws EntityGatewayException If the persistence layer throws an exception
      */
     public function save(object $entity);
 
@@ -35,14 +35,14 @@ interface EntityGatewayInterface
      * Deletes an entity.
      *
      * @param object $entity
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException If the persistence layer throws an exception
+     * @throws EntityGatewayException If the persistence layer throws an exception
      */
     public function delete(object $entity);
 
     /**
      * Commits entities state.
      *
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException If the persistence layer throws an exception
+     * @throws EntityGatewayException If the persistence layer throws an exception
      */
     public function commit();
 }

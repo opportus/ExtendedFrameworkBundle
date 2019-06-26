@@ -2,10 +2,10 @@
 
 namespace Opportus\ExtendedFrameworkBundle\Generator\Configuration;
 
-use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\GetterAccessor;
-use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\KeyAccessor;
+use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 
 /**
  * The trans configuration.
@@ -41,9 +41,9 @@ final class Trans extends AbstractValueConfiguration
 
     /**
      * Constructs the trans configuration.
-     * 
+     *
      * @param array $values
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function __construct(array $values = [])
     {
@@ -108,7 +108,7 @@ final class Trans extends AbstractValueConfiguration
 
     /**
      * Gets the id.
-     * 
+     *
      * @return string
      */
     public function getId(): string
@@ -118,7 +118,7 @@ final class Trans extends AbstractValueConfiguration
 
     /**
      * Gets the parameters.
-     * 
+     *
      * @return array
      */
     public function getParameters(): array
@@ -128,7 +128,7 @@ final class Trans extends AbstractValueConfiguration
 
     /**
      * Gets the domain.
-     * 
+     *
      * @return null|string
      */
     public function getDomain(): ?string
@@ -138,7 +138,7 @@ final class Trans extends AbstractValueConfiguration
 
     /**
      * Gets the locale.
-     * 
+     *
      * @return null|string
      */
     public function getLocale(): ?string

@@ -3,6 +3,7 @@
 namespace Opportus\ExtendedFrameworkBundle\Generator\Strategy;
 
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractDataConfiguration;
+use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -17,18 +18,18 @@ interface DataStrategyInterface
     /**
      * Generates the data.
      *
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractDataConfiguration $dataConfiguration
-     * @param  Symfony\Component\HttpFoundation\Request $request
+     * @param AbstractDataConfiguration $dataConfiguration
+     * @param Request $request
      * @return object
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function generate(AbstractDataConfiguration $dataConfiguration, Request $request): object;
 
     /**
      * Defines whether or not this data generator strategy supports the data configuration within the current context.
-     * 
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractDataConfiguration $dataConfiguration
-     * @param  Symfony\Component\HttpFoundation\Request $request
+     *
+     * @param AbstractDataConfiguration $dataConfiguration
+     * @param Request $request
      * @return bool
      */
     public function supports(AbstractDataConfiguration $dataConfiguration, Request $request): bool;

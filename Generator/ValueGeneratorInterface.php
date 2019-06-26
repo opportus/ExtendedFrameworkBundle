@@ -17,12 +17,12 @@ interface ValueGeneratorInterface
 {
     /**
      * Generates the value.
-     * 
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractValueConfiguration $valueConfiguration
-     * @param Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface $controllerResult
-     * @param  Symfony\Component\HttpFoundation\Request $request
+     *
+     * @param AbstractValueConfiguration $valueConfiguration
+     * @param ControllerResultInterface $controllerResult
+     * @param Request $request
      * @return string
-     * @throws Opportus\ExtendedFrameworkBundle\Generator\GeneratorException
+     * @throws GeneratorException
      */
     public function generate(AbstractValueConfiguration $valueConfiguration, ControllerResultInterface $controllerResult, Request $request): string;
 }

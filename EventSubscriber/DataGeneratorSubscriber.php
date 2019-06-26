@@ -18,14 +18,14 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 final class DataGeneratorSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var Opportus\ExtendedFrameworkBundle\Generator\DataGeneratorInterface $dataGenerator
+     * @var DataGeneratorInterface $dataGenerator
      */
     private $dataGenerator;
 
     /**
      * Constructs the data generator subscriber.
      *
-     * @param Opportus\ExtendedFrameworkBundle\Generator\DataGeneratorInterface $dataGenerator
+     * @param DataGeneratorInterface $dataGenerator
      */
     public function __construct(DataGeneratorInterface $dataGenerator)
     {
@@ -47,7 +47,7 @@ final class DataGeneratorSubscriber implements EventSubscriberInterface
     /**
      * Generates data on the kernel controller.
      *
-     * @param Symfony\Component\HttpKernel\Event\FilterControllerEvent $event
+     * @param FilterControllerEvent $event
      */
     public function generateOnKernelController(FilterControllerEvent $event)
     {

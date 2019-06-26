@@ -14,14 +14,14 @@ use Symfony\Component\HttpKernel\KernelInterface;
 final class TemplateEngine implements TemplateEngineInterface
 {
     /**
-     * @var Symfony\Component\HttpKernel\KernelInterface $kernel
+     * @var KernelInterface $kernel
      */
     private $kernel;
 
     /**
      * Cosntructs the  template engine.
      * 
-     * @param Symfony\Component\HttpKernel\KernelInterface $kernel
+     * @param KernelInterface $kernel
      */
     public function __construct(KernelInterface $kernel)
     {

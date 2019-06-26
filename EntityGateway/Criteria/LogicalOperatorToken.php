@@ -24,7 +24,7 @@ final class LogicalOperatorToken implements TokenInterface
      * Constructs the logical operator token.
      *
      * @param string $lexeme
-     * @throws Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException If the lexeme does not match the pattern
+     * @throws EntityGatewayException If the lexeme does not match the pattern
      */
     public function __construct(string $lexeme)
     {
