@@ -1,30 +1,39 @@
 <?php
 
+/**
+ * This file is part of the opportus/extended-framework-bundle package.
+ *
+ * Copyright (c) 2019 Clément Cazaud <clement.cazaud@outlook.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Opportus\ExtendedFrameworkBundle\DependencyInjection;
 
+use Doctrine\ORM\EntityManager;
 use Opportus\ExtendedFrameworkBundle\Annotation\AnnotationReaderInterface;
 use Opportus\ExtendedFrameworkBundle\Annotation\ControllerAnnotationReaderInterface;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\DataFetcherInterface;
 use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayInterface;
 use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryBuilderInterface;
-use Opportus\ExtendedFrameworkBundle\TemplateEngine\TemplateEngineInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\DataGeneratorInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\ResponseGeneratorInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\ViewGeneratorInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\FlashGeneratorInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\ResponseGeneratorInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Strategy\DataStrategyInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\Strategy\ResponseStrategyInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\Strategy\ViewStrategyInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Strategy\FlashStrategyInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\Strategy\ResponseStrategyInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Strategy\ValueSrategyInterface;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Opportus\ExtendedFrameworkBundle\Generator\Strategy\ViewStrategyInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\ValueGeneratorInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\ViewGeneratorInterface;
+use Opportus\ExtendedFrameworkBundle\TemplateEngine\TemplateEngineInterface;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\Config\FileLocator;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Translation\Translator;
 use Twig\Environment as Twig;
-use Doctrine\ORM\EntityManager;
 
 /**
  * The extension.

@@ -1,19 +1,28 @@
 <?php
 
+/**
+ * This file is part of the opportus/extended-framework-bundle package.
+ *
+ * Copyright (c) 2019 Clément Cazaud <clement.cazaud@outlook.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Opportus\ExtendedFrameworkBundle\EventSubscriber;
 
 use Opportus\ExtendedFrameworkBundle\Annotation\ControllerAnnotationReaderInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
-use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResult;
-use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractResponseConfiguration;
-use Opportus\ExtendedFrameworkBundle\Generator\ResponseGeneratorInterface;
+use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerException;
+use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResult;
+use Opportus\ExtendedFrameworkBundle\Generator\Context\ControllerResultInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\GeneratorException;
+use Opportus\ExtendedFrameworkBundle\Generator\ResponseGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * The response generator subscriber.

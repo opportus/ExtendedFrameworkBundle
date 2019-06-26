@@ -1,11 +1,20 @@
 <?php
 
+/**
+ * This file is part of the opportus/extended-framework-bundle package.
+ *
+ * Copyright (c) 2019 Clément Cazaud <clement.cazaud@outlook.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Opportus\ExtendedFrameworkBundle\EntityGateway;
 
-use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryInterface;
-use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryResultInterface;
-use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryResult;
 use Doctrine\ORM\EntityManagerInterface;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryInterface;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryResult;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\Query\QueryResultInterface;
 
 /**
  * The Doctrine entity gateway.

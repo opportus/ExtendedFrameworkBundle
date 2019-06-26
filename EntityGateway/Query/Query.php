@@ -1,11 +1,20 @@
 <?php
 
+/**
+ * This file is part of the opportus/extended-framework-bundle package.
+ *
+ * Copyright (c) 2019 Clément Cazaud <clement.cazaud@outlook.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Opportus\ExtendedFrameworkBundle\EntityGateway\Query;
 
-use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException;
-use Opportus\ExtendedFrameworkBundle\EntityGateway\Criteria\CriteriaInterface;
 use Opportus\ExtendedFrameworkBundle\EntityGateway\Criteria\Criteria;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\Criteria\CriteriaInterface;
 use Opportus\ExtendedFrameworkBundle\EntityGateway\Criteria\LeftComparisonOperandToken;
+use Opportus\ExtendedFrameworkBundle\EntityGateway\EntityGatewayException;
 
 /**
  * The query.

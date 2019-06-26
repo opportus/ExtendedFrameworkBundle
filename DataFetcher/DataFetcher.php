@@ -1,11 +1,20 @@
 <?php
 
+/**
+ * This file is part of the opportus/extended-framework-bundle package.
+ *
+ * Copyright (c) 2019 Clément Cazaud <clement.cazaud@outlook.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Opportus\ExtendedFrameworkBundle\DataFetcher;
 
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\AccessorInterface;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\GetterAccessor;
-use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
 use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\KeyAccessor;
+use Opportus\ExtendedFrameworkBundle\DataFetcher\Accessor\PropertyAccessor;
 
 /**
  * The data fetcher.
@@ -38,7 +47,6 @@ final class DataFetcher implements DataFetcherInterface
             }
 
             $datum = $data->{$accessor->getName()}();
-
         } elseif ($accessor instanceof PropertyAccessor) {
             if (!\is_object($data) || !\property_exists($data, $accessor->getName()) || !\array_key_exists($accessor->getName(), \get_object_vars($data))) {
                 throw new DataFetcherException(\sprintf(
@@ -49,7 +57,6 @@ final class DataFetcher implements DataFetcherInterface
             }
 
             $datum = $data->{$accessor->getName()};
-
         } elseif ($accessor instanceof KeyAccessor) {
             if (!\is_array($data) || !\array_key_exists($accessor->getName(), $data)) {
                 throw new DataFetcherException(\sprintf(
@@ -60,7 +67,6 @@ final class DataFetcher implements DataFetcherInterface
             }
 
             $datum = $data[$accessor->getName()];
-
         } else {
             throw new DataFetcherException(\sprintf(
                 '"%s" supports only accessors of type "%s" or "%s" or "%s". Got an object of type "%s".',

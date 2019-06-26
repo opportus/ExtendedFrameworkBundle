@@ -1,12 +1,21 @@
 <?php
 
+/**
+ * This file is part of the opportus/extended-framework-bundle package.
+ *
+ * Copyright (c) 2019 Clément Cazaud <clement.cazaud@outlook.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Opportus\ExtendedFrameworkBundle\EventSubscriber;
 
-use Opportus\ExtendedFrameworkBundle\Generator\DataGeneratorInterface;
 use Opportus\ExtendedFrameworkBundle\Generator\Configuration\AbstractDataConfiguration;
+use Opportus\ExtendedFrameworkBundle\Generator\DataGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * The data generator subscriber.
