@@ -6,7 +6,7 @@ This bundle is still in ALPHA.
 
 Contributions are welcome.
 
-Refer to the [demo application](https://github.com/opportus/extended-framework-bundle-demo) for concrete usage examples.
+Refer to the [demo application](https://github.com/opportus/demo-rest-api) for concrete usage examples.
 
 ## To Do
 
