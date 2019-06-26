@@ -102,7 +102,7 @@ final class FlashGeneratorSubscriber implements EventSubscriberInterface
         }
 
         $request = $event->getRequest();
-        $flashConfiguration = $this->getContextualFlashConfiguration($controllerResult, $request);
+        $flashConfiguration = $this->getContextualFlashConfiguration($exception, $request);
 
         if (null === $flashConfiguration) {
             return;
@@ -110,7 +110,7 @@ final class FlashGeneratorSubscriber implements EventSubscriberInterface
 
         $this->flashGenerator->generate(
             $flashConfiguration,
-            $controllerResult,
+            $exception,
             $request
         );
     }
